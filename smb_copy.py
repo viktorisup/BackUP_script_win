@@ -1,37 +1,7 @@
 import os
 import time
 from smb.SMBConnection import SMBConnection
-
-
-def read_conf():
-    conf_dict = {}
-    with open('conf.txt', 'r', encoding='utf-8') as f:
-        for line in f:
-            if line[0] == '#' or line == '\n':
-                continue
-            if 'src_path' in line:
-                key, value = line.split(' = ')
-                conf_dict[key] = value[:-1]
-            if 'ip_srv' in line:
-                key, value = line.split(' = ')
-                conf_dict[key] = value[:-1]
-            if 'smb_root_dir' in line:
-                key, value = line.split(' = ')
-                conf_dict[key] = value[:-1]
-            if 'smb_base_dir' in line:
-                key, value = line.split(' = ')
-                conf_dict[key] = value[:-1]
-            if 'login' in line:
-                key, value = line.split(' = ')
-                conf_dict[key] = value[:-1]
-            if 'passwd' in line:
-                key, value = line.split(' = ')
-                conf_dict[key] = value[:-1]
-        if conf_dict['smb_base_dir'] == 'None':
-            conf_dict['smb_base_dir'] = ''
-
-    return conf_dict
-
+from read_configuration import read_conf
 
 
 class MySMB:
@@ -43,7 +13,7 @@ class MySMB:
         self.smb_dir_src = smb_dir
         self.smb_dir = os.path.join(smb_dir, self.backup_folder)
         self.name_file = os.path.basename(local_dir)
-        self.samba = SMBConnection(username, password, '', '', use_ntlm_v2=True)
+        self.samba = SMBConnection(username, password, '', 'win-ad', use_ntlm_v2=True)
         self.samba.connect(server_ip, port)
 
     def upload_files(self):
@@ -54,7 +24,6 @@ class MySMB:
             print("Файл успешно скопирован на SMB-сервер!")
 
     def upload_folder(self):
-        # self.samba.createDirectory(self.smb_base_dir, self.smb_dir)
         for root, dir_list, file_list in os.walk(self.local_dir):
             walk_dir_tmp = root.split(self.local_dir)[1]
             walk_dir_tmp = walk_dir_tmp[1:]
@@ -83,7 +52,10 @@ if __name__ == "__main__":
         if j[-1].isdigit():
             list_num.append(j[-1])
 
-    max_num = int(max(list_num))
+    max_num = 1
+    if len(list_num) > 0:
+        max_num = int(max(list_num))
+
     idx = 1
     while idx <= max_num:
         if idx == 1:
@@ -107,7 +79,6 @@ if __name__ == "__main__":
                 smb_obj.samba.close()
             idx += 1
         else:
-            print(cfg_dict)
             loc_dir_c = cfg_dict['src_path' + str(idx)]
             srv_ip_c = cfg_dict['ip_srv' + str(idx)]
             smb_root_dir_c = cfg_dict['smb_root_dir' + str(idx)]
@@ -127,11 +98,3 @@ if __name__ == "__main__":
             finally:
                 smb_obj.samba.close()
             idx += 1
-        # exit_1 = input('Для выхода нажмите q: ')
-        #
-        # if exit_1 == 'q':
-        #     exit()
-
-
-
-

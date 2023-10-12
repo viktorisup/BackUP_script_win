@@ -16,6 +16,6 @@ smb_base_dir = None
 login = isupov
 
 # пароль от smb сервера
-passwd = .7e7v4c3
+passwd = 12345678
 
 # эта строчка нужна для коректного парсинга

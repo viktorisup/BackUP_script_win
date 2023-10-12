@@ -8,8 +8,8 @@ import time
 # input('Введите путь источник')
 # input('Введите путь назначения')
 prefix_name = time.strftime("%Y-%m-%d-%S")
-path_src = os.path.abspath(r'C:\ubn\id_rsa1')
-path_dst = os.path.abspath(r'C:\ubn\id_rsa')
+path_src = os.path.abspath(r'C:\ubn')
+path_dst = os.path.abspath(r'C:\test')
 get_name_src = os.path.basename(path_src)
 create_copy_name = get_name_src + '_' + prefix_name
 create_path_dst = os.path.join(path_dst, create_copy_name)

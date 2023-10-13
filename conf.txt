@@ -3,23 +3,23 @@
 src_path = C:\ubn
 
 # адрес smb сервера
-ip_srv =
+ip_srv = 192.168.55.4
 
 # хост нейм smb сервера (обязательно для windows серверов) None по умолчанию
-remote_name =
+remote_name = None
 
 # Имя домена полностью (пример uni.msmsu.ru), None по умолчанию
 domain = None
 
 # корневая папка на smb сервере
-smb_root_dir = obmen
+smb_root_dir = ivc folders
 
 # путь к директории относительно корневой папки smb сервера (директория должна существовать например \dir),
 # если копируем в корневую папку в данном поле пишем None
-smb_base_dir = None
+smb_base_dir = test
 
 # логин от smb сервера
-login = isupov
+login = ivc
 
 # пароль от smb сервера
 passwd = 12345678

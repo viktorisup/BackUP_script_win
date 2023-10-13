@@ -10,6 +10,16 @@ def read_conf():
             if 'ip_srv' in line:
                 key, value = line.split(' = ')
                 conf_dict[key] = value[:-1]
+            if 'remote_name' in line:
+                key, value = line.split(' = ')
+                conf_dict[key] = value[:-1]
+                if conf_dict[key] == 'None':
+                    conf_dict[key] = ''
+            if 'domain' in line:
+                key, value = line.split(' = ')
+                conf_dict[key] = value[:-1]
+                if conf_dict[key] == 'None':
+                    conf_dict[key] = ''
             if 'smb_root_dir' in line:
                 key, value = line.split(' = ')
                 conf_dict[key] = value[:-1]
@@ -26,3 +36,4 @@ def read_conf():
                 conf_dict[key] = value[:-1]
 
     return conf_dict
+

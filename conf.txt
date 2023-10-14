@@ -19,10 +19,10 @@ smb_root_dir = ivc folders
 smb_base_dir = test
 
 # логин от smb сервера
-login = ivc
+login = gAAAAABlKugdkIWr6G_eGTaX1mHczOzEkZh2ejJELbYCod1d89IpB6l89j3NJ_zymrw2uV7p2CQhsUnBPWvTMwBFM7YMQDG7_A==
 
 # пароль от smb сервера
-passwd = 12345678
+passwd = gAAAAABlKugdAh49RmRU7zEeCoAhYuivn-EjMTEt5weARB49l6Gm-GS_hwCqphKFz4HI2HN41JGL-jbxlZ0qqji_HWDXOiAQRw==
 
 # эта строчка нужна для коректного парсинга
 

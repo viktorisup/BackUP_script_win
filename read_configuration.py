@@ -1,3 +1,6 @@
+from crypt_pass import decrypter
+
+
 def read_conf():
     conf_dict = {}
     with open('conf.txt', 'r', encoding='utf-8') as f:
@@ -30,10 +33,20 @@ def read_conf():
                     conf_dict[key] = ''
             if 'login' in line:
                 key, value = line.split(' = ')
-                conf_dict[key] = value[:-1]
+                try:
+                    decrypt_val = decrypter(value)
+                    conf_dict[key] = decrypt_val
+                except Exception as e:
+                    print(e)
+                    conf_dict[key] = value[:-1]
+
             if 'passwd' in line:
                 key, value = line.split(' = ')
-                conf_dict[key] = value[:-1]
+                try:
+                    decrypt_val = decrypter(value)
+                    conf_dict[key] = decrypt_val
+                except Exception as e:
+                    print(e)
+                    conf_dict[key] = value[:-1]
 
     return conf_dict
-
